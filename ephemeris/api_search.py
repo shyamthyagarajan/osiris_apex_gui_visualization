@@ -17,10 +17,10 @@ def query_horizons(id_string):
     single_match_identifier = '"count":1'
     asteroid_check_identifier = '"type":"asteroid'
 
-    id_number = None
+    id_number = {}
 
     if no_match_identifier in html_content:
-        print("No matches found for inputted body string request")
+        pass
     elif single_match_identifier in html_content:
         if asteroid_check_identifier in html_content:
             extract_substr = '"name":"'
@@ -33,8 +33,6 @@ def query_horizons(id_string):
             end_index = html_content.find('"', start_index)
             id_number = html_content[start_index:end_index]
     else:
-        print("Multiple matches found, narrow search down and reinput string ID based on query output")
-        print("**************************************************************************************")
         extract_count = '"count":'
         total_cnt_str_start_idx = html_content.find(extract_count) + len(extract_count)
         total_cnt_str_idx = html_content.find(',', total_cnt_str_start_idx)
@@ -42,7 +40,7 @@ def query_horizons(id_string):
         
         results_start = html_content.find('"result":[') + len('"result":[')
         start_idx_cnt = results_start
-        id_number = ""
+        id_number = {}
 
         for i in range(total_cnt):
             start_index = html_content.find("{", start_idx_cnt)
@@ -60,12 +58,12 @@ def query_horizons(id_string):
             end_sub_idx = html_content_substr.find('"', start_sub_idx)
             id_number_spkid = html_content_substr[start_sub_idx:end_sub_idx]
 
-            print(id_number_name + " | " + id_number_spkid)
+            id_number[id_number_name] = id_number_spkid
             if i != total_cnt - 1:
                 start_idx_cnt = end_index + 1
         
     return id_number
 
 if __name__ == "__main__":
-    result = query_horizons("Mercury")
+    result = query_horizons("Neptune")
     print(result)
