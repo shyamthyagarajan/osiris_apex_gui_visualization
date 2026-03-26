@@ -15,5 +15,5 @@ def fetch_horizons_data(satellite_id_list, start_time, stop_time, step_val):
   return data_map
 
 if __name__ == "__main__":
-    result = fetch_horizons_data(['20099942','-64'], '2026-03-20', '2026-03-21', '1h')
+    result = fetch_horizons_data(['99942','-64'], '2026-03-20', '2026-03-21', '1h')
     print(result)

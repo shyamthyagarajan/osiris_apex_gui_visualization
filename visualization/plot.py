@@ -63,4 +63,5 @@ if __name__ == "__main__":
     # data_map = fetch_horizons_data(['99942', '-64'], '2028-02-20', '2029-04-14', '60h')
     # data_map = fetch_horizons_data(['399', '301'], '2028-02-20', '2029-04-14', '60h')
     data_map = fetch_horizons_data(['399', '99942', '-64'], '2026-03-25', '2029-04-14', '120h')
+    # data_map = fetch_horizons_data(['199', '299', '399', '499'], '2026-03-25', '2027-03-25', '12h')
     plot_trajectories(data_map)
