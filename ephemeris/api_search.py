@@ -34,7 +34,7 @@ def query_horizons(id_string):
             id_number = html_content[start_index:end_index]
     else:
         extract_count = '"count":'
-        total_cnt_str_start_idx = html_content.find(extract_count) + len(extract_count)
+        total_cnt_str_start_idx = html_content.rfind(extract_count) + len(extract_count)
         total_cnt_str_idx = html_content.find(',', total_cnt_str_start_idx)
         total_cnt = int(html_content[total_cnt_str_start_idx:total_cnt_str_idx])
         

@@ -38,6 +38,7 @@ class BodySelectionDialog(QDialog):
     def on_select(self):
         selected = self.ephemeris_body_list.currentItem()
         if selected:
+            self.selected_name = selected.text()
             self.selected_id = self.api_search_dict[selected.text()]
             self.accept()
 class MainWindow(QMainWindow):
@@ -149,11 +150,11 @@ class MainWindow(QMainWindow):
                 result = dialog.selected_id
                 color = QColorDialog.getColor()
                 if color.isValid():
-                    BODIES[body_input] = {'id': result, 'color': color.name()}
-                    ID_TO_NAME[result] = body_input
+                    BODIES[dialog.selected_name] = {'id': result, 'color': color.name()}
+                    ID_TO_NAME[result] = dialog.selected_name
                     pixmap = QPixmap(16, 16)
                     pixmap.fill(QColor(color))
-                    item = QListWidgetItem(QIcon(pixmap), body_input)
+                    item = QListWidgetItem(QIcon(pixmap), dialog.selected_name)
                     item.setFlags(item.flags() | Qt.ItemIsUserCheckable | Qt.ItemIsEnabled)
                     item.setCheckState(Qt.Checked)
                     self.ephemeris_body_list.addItem(item)

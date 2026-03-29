@@ -12,7 +12,7 @@ def plot_trajectories(data_map, parent=None, title=None):
     plt.style.use('dark_background')
     dialog = QDialog(parent)
     dialog.setWindowTitle("Orbit Visualization")
-    dialog.resize(900, 700)
+    dialog.showMaximized()
     layout = QVBoxLayout()
     dialog.setLayout(layout)
 
@@ -71,6 +71,7 @@ def plot_trajectories(data_map, parent=None, title=None):
     ax.grid(True, color='white', alpha=0.1)
 
     ani = FuncAnimation(fig, update, frames=num_frames, interval=25)
+    ani.save('example_data_run/README.gif', writer='pillow', fps=30)
     canvas.draw()
     dialog.ani = ani
     dialog.exec_()
