@@ -1,7 +1,5 @@
 import numpy as np
 from astroquery.jplhorizons import Horizons
-import ssl
-ssl._create_default_https_context = ssl._create_unverified_context
 
 def fetch_horizons_data(satellite_id_list, start_time, stop_time, step_val):
   data_map = {}
